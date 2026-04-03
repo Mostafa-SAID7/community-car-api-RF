@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Community Car API documentation - explore endpoints for cars, bookings, users, and more.">
+    <title>Community Car API — Docs</title>
+    <link rel="icon" type="image/x-icon" href="/images/logo.png">
+    <link rel="stylesheet" href="/community-car.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <nav>
+        <div class="intrologo">
+            <img src="/images/logo.png" alt="Community Car API">
+        </div>
+        <div>
+            <a href="/Home.html"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="/Docs.html" class="active"><i class="fa-solid fa-book"></i> Docs</a>
+            <a href="/swagger"><i class="fa-solid fa-code"></i> Swagger</a>
+            <a href="https://www.eraasoft.com" target="_blank" rel="noopener"><i class="fa-solid fa-building"></i> EraSoft</a>
+        </div>
+    </nav>
+
+    <div class="doccontainer">
+        <div style="text-align: center; margin-bottom: 30px; padding: 0;">
+            <h1 style="font-size: 2.5rem; margin-bottom: 10px; color: white;">API Documentation</h1>
+            <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto; font-size: 1rem;">
+                Welcome to the official developer documentation for the Community Car API. 
+                Below you will find detailed information about our resources and integration guides.
+            </p>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <a href="#auth" class="tab-link active" data-section="auth">
+                <i class="fa-solid fa-user-shield"></i>
+                <span>Auth</span>
+            </a>
+            <a href="#cars" class="tab-link" data-section="cars">
+                <i class="fa-solid fa-car"></i>
+                <span>Cars</span>
+            </a>
+            <a href="#bookings" class="tab-link" data-section="bookings">
+                <i class="fa-solid fa-calendar-check"></i>
+                <span>Bookings</span>
+            </a>
+            <a href="#reviews" class="tab-link" data-section="reviews">
+                <i class="fa-solid fa-star"></i>
+                <span>Reviews</span>
+            </a>
+            <a href="#users" class="tab-link" data-section="users">
+                <i class="fa-solid fa-user"></i>
+                <span>Users</span>
+            </a>
+            <a href="#qa" class="tab-link" data-section="qa">
+                <i class="fa-solid fa-comments"></i>
+                <span>Q&A</span>
+            </a>
+            <a href="#admin" class="tab-link" data-section="admin">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Admin</span>
+            </a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="docs-content-full">
+            <!-- ===== FEATURES ===== -->
+            <section id="features" style="margin-bottom: 30px;">
+                <h2 class="section-title"><i class="fa-solid fa-star"></i> Core Capabilities</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fa-solid fa-car feature-icon"></i>
+                        <h4>Car Management</h4>
+                        <p>Complete CRUD operations for car listings with advanced search and filtering capabilities.</p>
+                        <ul class="feature-list">
+                            <li>Multi-criteria Search</li>
+                            <li>Image Management</li>
+                            <li>Availability Tracking</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-calendar-check feature-icon"></i>
+                        <h4>Booking System</h4>
+                        <p>Real-time booking management with conflict detection and status tracking.</p>
+                        <ul class="feature-list">
+                            <li>Date Validation</li>
+                            <li>Payment Integration</li>
+                            <li>Booking History</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fa-solid fa-shield-halved feature-icon"></i>
+                        <h4>Secure Auth</h4>
+                        <p>JWT-based authentication with ASP.NET Core Identity and role-based access control.</p>
+                        <ul class="feature-list">
+                            <li>Token Management</li>
+                            <li>Role-Based Access</li>
+                            <li>Secure Endpoints</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> API Resources</h2>
+
+            <!-- ===== AUTHENTICATION ===== -->
+            <div class="resources" id="auth">
+            <h2><i class="fa-solid fa-user-shield"></i> Authentication</h2>
+            <p>JWT-based authentication with ASP.NET Core Identity and role-based access control.</p>
+            
+            <div class="endpoints-grid">
+                <!-- Register Endpoint -->
+                <div class="endpoint-card">
+                    <h4>Register new user</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/auth/register</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Required body: <code>{ "email": "user@example.com", "password": "SecurePass123!", "firstName": "John", "lastName": "Doe", "phoneNumber": "+1234567890" }</code></p>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "isSuccess": true,
+  "data": {
+    "userId": "550e8400-e29b-41d4-a716-446655440000",
+    "email": "user@example.com",
+    "accessToken": "eyJhbGciOiJIUzI1NiIs...",
+    "refreshToken": "refresh_token_here"
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Login Endpoint -->
+                <div class="endpoint-card">
+                    <h4>Login</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/auth/login</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Required body: <code>{ "email": "user@example.com", "password": "SecurePass123!" }</code></p>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "isSuccess": true,
+  "data": {
+    "accessToken": "eyJhbGciOiJIUzI1NiIs...",
+    "refreshToken": "refresh_token_here",
+    "expiresIn": 3600
+  }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== CARS ===== -->
+            <div class="resources" id="cars">
+            <h2><i class="fa-solid fa-car"></i> Car Management</h2>
+            <p>Access and manage car listings in the community car sharing platform.</p>
+
+            <div class="endpoints-grid">
+                <!-- Get All Cars -->
+                <div class="endpoint-card">
+                    <h4>Get all cars</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/Cars</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>[
+  {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "make": "Toyota",
+    "model": "Camry",
+    "year": 2023,
+    "color": "Silver",
+    "carType": "Sedan",
+    "fuelType": "Gasoline",
+    "transmission": "Automatic",
+    "seats": 5,
+    "hourlyRate": 15.00,
+    "dailyRate": 80.00,
+    "city": "New York",
+    "state": "NY",
+    "isAvailable": true
+  }
+]</code></pre>
+                    </div>
+                </div>
+
+                <!-- Get Car by ID -->
+                <div class="endpoint-card">
+                    <h4>Get car by ID</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/Cars/{id}</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 2023,
+  "description": "Well-maintained family car",
+  "hourlyRate": 15.00,
+  "dailyRate": 80.00,
+  "isAvailable": true
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Create Car -->
+                <div class="endpoint-card">
+                    <h4>Create a new car</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/Cars</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Required body: <code>{ "make": "string", "model": "string", "year": 2023, "color": "string", "licensePlate": "string", "carType": 1, "fuelType": 1, "transmission": 1, "seats": 5, "description": "string", "hourlyRate": 15.00, "dailyRate": 80.00, "city": "string", "state": "string" }</code></p>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "make": "Toyota",
+  "model": "Camry",
+  "year": 2023,
+  "isAvailable": true
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Delete Car -->
+                <div class="endpoint-card">
+                    <h4>Delete a car</h4>
+                    <div class="docbox">
+                        <pre><code>DELETE /api/Cars/{id}</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Soft delete - marks the car as deleted without removing from database.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== BOOKINGS ===== -->
+            <div class="resources" id="bookings">
+            <h2><i class="fa-solid fa-calendar-check"></i> Booking Management</h2>
+            <p>Manage car bookings with real-time availability checking.</p>
+
+            <div class="endpoints-grid">
+                <!-- Get All Bookings -->
+                <div class="endpoint-card">
+                    <h4>Get all bookings</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/Bookings</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>[
+  {
+    "id": "7fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "bookingNumber": "BK-2024-001",
+    "carId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "startDate": "2024-03-01T10:00:00Z",
+    "endDate": "2024-03-05T10:00:00Z",
+    "totalAmount": 320.00,
+    "status": "Confirmed",
+    "paymentStatus": "Paid"
+  }
+]</code></pre>
+                    </div>
+                </div>
+
+                <!-- Create Booking -->
+                <div class="endpoint-card">
+                    <h4>Create a booking</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/Bookings</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">System automatically checks for booking conflicts and calculates total amount.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== REVIEWS ===== -->
+            <div class="resources" id="reviews">
+            <h2><i class="fa-solid fa-star"></i> Review System</h2>
+            <p>User reviews and ratings for cars with statistics and verification.</p>
+
+            <div class="endpoints-grid">
+                <!-- Get All Reviews -->
+                <div class="endpoint-card">
+                    <h4>Get all reviews</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/reviews?carId={carId}</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>[
+  {
+    "id": "9fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "reviewerId": "550e8400-e29b-41d4-a716-446655440000",
+    "reviewerName": "John Doe",
+    "carId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "rating": 5,
+    "comment": "Excellent car, very clean!",
+    "isVerified": true,
+    "createdAt": "2024-03-02T15:30:45Z"
+  }
+]</code></pre>
+                    </div>
+                </div>
+
+                <!-- Get Review Statistics -->
+                <div class="endpoint-card">
+                    <h4>Get review statistics</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/reviews/statistics?carId={carId}</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "totalReviews": 25,
+  "averageRating": 4.6,
+  "fiveStars": 15,
+  "fourStars": 8,
+  "threeStars": 2,
+  "twoStars": 0,
+  "oneStar": 0
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Create Review -->
+                <div class="endpoint-card">
+                    <h4>Create a review</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/reviews</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Required body: <code>{ "carId": "guid", "rating": 5, "comment": "Great car!" }</code></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== USERS ===== -->
+            <div class="resources" id="users">
+            <h2><i class="fa-solid fa-user"></i> User Management</h2>
+            <p>User profile management and statistics.</p>
+
+            <div class="endpoints-grid">
+                <!-- Get User Profile -->
+                <div class="endpoint-card">
+                    <h4>Get user profile</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/users/profile</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "id": "550e8400-e29b-41d4-a716-446655440000",
+  "email": "user@example.com",
+  "firstName": "John",
+  "lastName": "Doe",
+  "phoneNumber": "+1234567890",
+  "city": "New York",
+  "state": "NY",
+  "roles": ["User"]
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Update Profile -->
+                <div class="endpoint-card">
+                    <h4>Update profile</h4>
+                    <div class="docbox">
+                        <pre><code>PUT /api/users/profile</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Update user information like name, phone, city, and state.</p>
+                    </div>
+                </div>
+
+                <!-- Get User Statistics -->
+                <div class="endpoint-card">
+                    <h4>Get user statistics</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/users/statistics</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "totalBookings": 15,
+  "completedBookings": 12,
+  "totalCarsOwned": 2,
+  "totalSpent": 1250.00,
+  "totalEarned": 3500.00
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== COMMUNITY Q&A ===== -->
+            <div class="resources" id="qa">
+            <h2><i class="fa-solid fa-comments"></i> Community Q&A System</h2>
+            <p>Gamified knowledge-sharing platform with questions, answers, voting, and reputation system.</p>
+
+            <div class="endpoints-grid">
+                <!-- Ask Question -->
+                <div class="endpoint-card">
+                    <h4>Ask a question</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/qa/questions</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Required body: <code>{ "title": "How do I maintain my car?", "content": "Looking for maintenance tips...", "category": 1, "tags": "maintenance,tips" }</code></p>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "isSuccess": true,
+  "data": {
+    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+    "title": "How do I maintain my car?",
+    "voteCount": 0,
+    "answerCount": 0,
+    "viewCount": 0,
+    "isSolved": false
+  }
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Get Questions -->
+                <div class="endpoint-card">
+                    <h4>Get questions</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/qa/questions?category=1&sortBy=VoteCount</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "items": [
+    {
+      "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "title": "How do I maintain my car?",
+      "category": "Maintenance",
+      "tags": ["maintenance", "tips"],
+      "voteCount": 15,
+      "answerCount": 3,
+      "isSolved": true
+    }
+  ],
+  "pageNumber": 1,
+  "totalPages": 5
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Answer Question -->
+                <div class="endpoint-card">
+                    <h4>Answer a question</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/qa/answers</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Earn +10 points for providing an answer!</p>
+                    </div>
+                </div>
+
+                <!-- Vote -->
+                <div class="endpoint-card">
+                    <h4>Vote on question/answer</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/qa/questions/{id}/vote</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Body: <code>{ "voteType": 1 }</code> (1 for upvote, -1 for downvote)</p>
+                    </div>
+                </div>
+
+                <!-- Leaderboard -->
+                <div class="endpoint-card">
+                    <h4>Get leaderboard</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/qa/leaderboard?timePeriod=AllTime</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "items": [
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440000",
+      "userName": "John Doe",
+      "totalPoints": 1250,
+      "level": 4,
+      "rank": "Master",
+      "badgeCount": 4,
+      "questionsAsked": 15,
+      "answersProvided": 48,
+      "acceptedAnswers": 12
+    }
+  ]
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- User Reputation -->
+                <div class="endpoint-card">
+                    <h4>Get user reputation</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/qa/reputation</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "totalPoints": 850,
+  "level": 3,
+  "rank": "Expert",
+  "questionsAsked": 22,
+  "answersProvided": 31,
+  "acceptedAnswers": 5,
+  "badges": [
+    {
+      "name": "Contributor",
+      "description": "Earned 100 total points",
+      "badgeType": "Contributor",
+      "earnedAt": "2024-02-15T10:30:00Z"
+    }
+  ]
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===== ADMIN ===== -->
+            <div class="resources" id="admin">
+            <h2><i class="fa-solid fa-shield-halved"></i> Admin Dashboard</h2>
+            <p>Administrative endpoints for platform management (requires Admin role).</p>
+
+            <div class="endpoints-grid">
+                <!-- Dashboard Statistics -->
+                <div class="endpoint-card">
+                    <h4>Get dashboard statistics</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/admin/dashboard/statistics</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "totalUsers": 1250,
+  "totalCars": 450,
+  "totalBookings": 3200,
+  "totalReviews": 1800,
+  "activeBookings": 45,
+  "totalRevenue": 125000.00,
+  "monthlyRevenue": 15000.00,
+  "averageRating": 4.6
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Business Metrics -->
+                <div class="endpoint-card">
+                    <h4>Get business metrics</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/admin/dashboard/metrics?monthsBack=6</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Provides revenue trends, top cars, and booking completion rates.</p>
+                    </div>
+                </div>
+
+                <!-- Get All Users -->
+                <div class="endpoint-card">
+                    <h4>Get all users</h4>
+                    <div class="docbox">
+                        <pre><code>GET /api/admin/users?pageNumber=1&pageSize=20</code></pre>
+                    </div>
+                    <button class="button">Show output</button>
+                    <div class="displaybtn docbox" hidden>
+                        <pre><code>{
+  "items": [
+    {
+      "id": "550e8400-e29b-41d4-a716-446655440000",
+      "email": "user@example.com",
+      "firstName": "John",
+      "lastName": "Doe",
+      "roles": ["User"]
+    }
+  ],
+  "pageNumber": 1,
+  "totalPages": 10
+}</code></pre>
+                    </div>
+                </div>
+
+                <!-- Assign Role -->
+                <div class="endpoint-card">
+                    <h4>Assign role to user</h4>
+                    <div class="docbox">
+                        <pre><code>POST /api/admin/users/{userId}/roles</code></pre>
+                    </div>
+                    <div class="infodiv">
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="info">Required body: <code>{ "role": "Admin" }</code></p>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            <i class="fa-solid fa-code"></i>
+            Built with <i class="fa-solid fa-heart footer-heart"></i> by
+            <a href="https://m-said-portfolio.netlify.app" target="_blank" rel="noopener">M.Said</a>
+            for
+            <a href="https://www.eraasoft.com" target="_blank" rel="noopener">EraSoft</a>
+        </p>
+    </footer>
+
+    <script>
+        // Show/Hide output buttons
+        document.querySelectorAll('.button').forEach(button => {
+            button.addEventListener('click', () => {
+                const display = button.nextElementSibling;
+                const isHidden = display.hasAttribute('hidden');
+                
+                if (isHidden) {
+                    display.removeAttribute('hidden');
+                    button.textContent = 'Hide output';
+                    button.classList.add('glow');
+                } else {
+                    display.setAttribute('hidden', '');
+                    button.textContent = 'Show output';
+                    button.classList.remove('glow');
+                }
+            });
+        });
+
+        // Tab Navigation - Active Link Highlighting
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const sections = document.querySelectorAll('.resources');
+
+        // Update active tab on scroll
+        function updateActiveTab() {
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 200;
+                const sectionHeight = section.offsetHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            tabLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Smooth scroll and update active tab on click
+        tabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all tabs
+                tabLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                link.classList.add('active');
+                
+                const targetId = link.getAttribute('data-section');
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 180;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Listen to scroll events
+        window.addEventListener('scroll', updateActiveTab);
+        
+        // Initial call to set active tab
+        updateActiveTab();
+    </script>
+
+</body>
+</html>

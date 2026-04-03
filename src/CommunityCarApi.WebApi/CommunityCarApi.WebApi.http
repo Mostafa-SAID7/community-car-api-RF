@@ -1,0 +1,6 @@
+@CommunityCarApi.WebApi_HostAddress = http://localhost:5075
+
+GET {{CommunityCarApi.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
