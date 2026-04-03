@@ -31,7 +31,7 @@ jobs:
       run: dotnet publish src/CommunityCarApi.WebApi/CommunityCarApi.WebApi.csproj --configuration Release --output ./publish
     
     - name: Upload artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: community-car-api
         path: ./publish
@@ -54,7 +54,7 @@ jobs:
       run: docker save communitycar-api:latest | gzip > communitycar-api.tar.gz
     
     - name: Upload Docker image artifact
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: docker-image
         path: communitycar-api.tar.gz
